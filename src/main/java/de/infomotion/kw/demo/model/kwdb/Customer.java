@@ -44,6 +44,9 @@ public class Customer {
         this.stateShortCode = stateShortCode;
     }
 
+
+
+
     public BigInteger getCustomerNumber() {
         return customerNumber;
     }

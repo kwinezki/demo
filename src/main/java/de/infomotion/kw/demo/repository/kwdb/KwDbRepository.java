@@ -4,8 +4,8 @@ package de.infomotion.kw.demo.repository.kwdb;
         import org.springframework.data.jpa.repository.JpaRepository;
 
         import java.math.BigInteger;
-        import java.util.List;
 
-public interface KwDbRepository extends JpaRepository<Customer, BigInteger> {
+
+public interface KwDbRepository extends JpaRepository<Customer, BigInteger>, KwDbCustomerRepository {
 
 }

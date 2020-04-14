@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+//@ComponentScan(basePackages = "AbfrageMitHibernate")
 @ComponentScan(basePackages = "de.infomotion.kw.demo")
+//@EntityScan(basePackages =  "AbfrageMitHibernate")
 @EntityScan(basePackages =  "de.infomotion.kw.demo")
 public class DemoApplication {
 
