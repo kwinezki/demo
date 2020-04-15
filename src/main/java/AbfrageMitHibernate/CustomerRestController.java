@@ -22,6 +22,6 @@ public class CustomerRestController {
         customerDto.setCustomer(customerList);
 
         return customerDto;                                                 //Das ganze CustomerDto Objekt wird als JSON zurück gegeben
-    }*/
-
+    }
+*/
 }

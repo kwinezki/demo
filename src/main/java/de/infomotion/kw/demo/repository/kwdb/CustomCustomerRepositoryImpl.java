@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 
-public class KwDbCustomerRepositoryImpl implements KwDbCustomerRepository {
+public class CustomCustomerRepositoryImpl implements CustomCustomerRepository {
 
    @PersistenceContext
    private EntityManager entityManager;
@@ -22,6 +22,7 @@ public class KwDbCustomerRepositoryImpl implements KwDbCustomerRepository {
 
 
            for (int i = 0; i < entityCount; i++) {
+
                   Customer customer = new Customer (
                         summerwineCustomer.get(i).getCustomerNumber(),
                         summerwineCustomer.get(i).getCustomerName(),
