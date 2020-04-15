@@ -1,15 +1,15 @@
-package dto;
+package de.infomotion.kw.demo.dto;
 
 
 import de.infomotion.kw.demo.model.summerwine.SummerwineCustomer;
 
 import java.util.List;
 
-public class CustomerDto {
+public class SummerwineCustomerDto {
 
     private List<SummerwineCustomer> summerwineCustomers;
 
-    public CustomerDto(List<SummerwineCustomer> summerwineCustomers) {
+    public SummerwineCustomerDto(List<SummerwineCustomer> summerwineCustomers) {
         this.summerwineCustomers = summerwineCustomers;
     }
 

@@ -32,7 +32,7 @@ public class Customer {
     @Column(name = "staat_kurz", nullable = true)
     private String stateShortCode;
 
-    protected Customer(){}
+    public Customer(){}
 
     public Customer(BigInteger customerNumber, String customerName, Integer zipCode, String city, String streetName, String federalStateShortCode, String stateShortCode) {
         this.customerNumber = customerNumber;

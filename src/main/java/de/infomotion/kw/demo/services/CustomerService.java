@@ -4,7 +4,7 @@ import de.infomotion.kw.demo.model.kwdb.Customer;
 import de.infomotion.kw.demo.model.summerwine.SummerwineCustomer;
 import de.infomotion.kw.demo.repository.kwdb.KwDbRepository;
 import de.infomotion.kw.demo.repository.summerwine.SummerWineRepository;
-import dto.CustomerDto;
+import de.infomotion.kw.demo.dto.SummerwineCustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -35,17 +35,15 @@ public class CustomerService {
 
     private void copyCustomers() {
         List<SummerwineCustomer> summerwineCustomerList = summerWineRepository.findAll();
-        CustomerDto customerDto = new CustomerDto(summerwineCustomerList);
-        kwDbRepository.save(customerDto.getSummerwineCustomers());
-
+        SummerwineCustomerDto summerwineCustomerDto = new SummerwineCustomerDto(summerwineCustomerList);
+        kwDbRepository.save(summerwineCustomerDto.getSummerwineCustomers());
     }
 
     @Transactional
-    public void loadCustomerFromKwDb(){
+    public List<Customer> loadCustomerFromKwDb(){
         List<Customer> customerList = kwDbRepository.findAll();
-        customerList.forEach(customer -> System.out.println(customer));
-
-
+        customerList.forEach(customer1 -> System.out.println(customer1));
+        return customerList;
     }
 
     @Transactional

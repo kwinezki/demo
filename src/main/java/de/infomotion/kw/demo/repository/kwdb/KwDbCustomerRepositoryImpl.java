@@ -22,12 +22,7 @@ public class KwDbCustomerRepositoryImpl implements KwDbCustomerRepository {
 
 
            for (int i = 0; i < entityCount; i++) {
-               if ( i > 0 && i % batchSize == 0) {
-                   entityManager.flush();
-                   entityManager.clear();
-               }
-
-               Customer customer = new Customer (
+                  Customer customer = new Customer (
                         summerwineCustomer.get(i).getCustomerNumber(),
                         summerwineCustomer.get(i).getCustomerName(),
                         summerwineCustomer.get(i).getZipCode(),
@@ -38,10 +33,17 @@ public class KwDbCustomerRepositoryImpl implements KwDbCustomerRepository {
                );
 
                     entityManager.persist(customer);
+
            }
 
        }
+
+    @Transactional
+    @Override
+    public void refresh(Customer customer) {
+           entityManager.refresh(customer);
     }
+}
 
 
 
