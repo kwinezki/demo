@@ -5,7 +5,7 @@ import de.infomotion.kw.demo.model.summerwine.SummerwineCustomer;
 
 import java.util.List;
 
-public interface KwDbCustomerRepository {
+public interface CustomCustomerRepository {
     void save(List<SummerwineCustomer> summerwineCustomers);
     void refresh(Customer customer);
 }

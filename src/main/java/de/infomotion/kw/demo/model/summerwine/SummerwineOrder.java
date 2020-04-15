@@ -1,19 +1,18 @@
-package de.infomotion.kw.demo.model.kwdb;
+package de.infomotion.kw.demo.model.summerwine;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "Auftrag")
-public class Order {
+public class SummerwineOrder {
 
 	@Id
-	@Column(name = "auftragsnummer", precision = 38, scale = 0, insertable = true, updatable = false)
+	@Column(name = "auftragsnummer", precision = 38, scale = 0, insertable = true, updatable = false, nullable = true)
 	private BigInteger orderNumber;
 
 	@Temporal(TemporalType.DATE)
@@ -33,10 +32,10 @@ public class Order {
 	private BigInteger quantity;
 
 	@Column(name = "gesamtverkaufspreis", precision = 15, scale = 2, nullable = true)
-	private BigDecimal wholeSalePrice;
+	private Double wholeSalePrice;
 
 	@Column(name = "gesamteinkaufspreis", precision = 15, scale = 2, nullable = true)
-	private BigDecimal wholeBuyPrice;
+	private Double wholeBuyPrice;
 
 
 }

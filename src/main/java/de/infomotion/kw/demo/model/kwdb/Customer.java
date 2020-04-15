@@ -27,21 +27,21 @@ public class Customer {
     private String streetName;
 
     @Column(name = "bundesland_kurz", nullable = true)
-    private String federalStateShortCode;
+    private String stateShortCode;
 
     @Column(name = "staat_kurz", nullable = true)
-    private String stateShortCode;
+    private String countryShortCode;
 
     public Customer(){}
 
-    public Customer(BigInteger customerNumber, String customerName, Integer zipCode, String city, String streetName, String federalStateShortCode, String stateShortCode) {
+    public Customer(BigInteger customerNumber, String customerName, Integer zipCode, String city, String streetName, String stateShortCode, String countryShortCode) {
         this.customerNumber = customerNumber;
         this.customerName = customerName;
         this.zipCode = zipCode;
         this.city = city;
         this.streetName = streetName;
-        this.federalStateShortCode = federalStateShortCode;
         this.stateShortCode = stateShortCode;
+        this.countryShortCode = countryShortCode;
     }
 
 
@@ -87,20 +87,20 @@ public class Customer {
         this.streetName = streetName;
     }
 
-    public String getFederalStateShortCode() {
-        return federalStateShortCode;
-    }
-
-    public void setFederalStateShortCode(String federalStateShortCode) {
-        this.federalStateShortCode = federalStateShortCode;
-    }
-
     public String getStateShortCode() {
         return stateShortCode;
     }
 
     public void setStateShortCode(String stateShortCode) {
         this.stateShortCode = stateShortCode;
+    }
+
+    public String getCountryShortCode() {
+        return countryShortCode;
+    }
+
+    public void setCountryShortCode(String countryShortCode) {
+        this.countryShortCode = countryShortCode;
     }
 
     @Override
@@ -111,8 +111,8 @@ public class Customer {
                 ", zipCode=" + zipCode +
                 ", city='" + city + '\'' +
                 ", streetName='" + streetName + '\'' +
-                ", federalStateShortCode='" + federalStateShortCode + '\'' +
-                ", stateShortCode='" + stateShortCode + '\'' +
+                ", federalStateShortCode='" + stateShortCode + '\'' +
+                ", stateShortCode='" + countryShortCode + '\'' +
                 '}';
     }
 }
