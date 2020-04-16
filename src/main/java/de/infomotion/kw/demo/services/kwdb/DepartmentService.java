@@ -13,10 +13,6 @@ public class DepartmentService {
 
 	private List<Department> departmentList;
 
-	public void setDepartmentList(List<Department> departmentList) {
-		this.departmentList = departmentList;
-	}
-
 	@Autowired
 	DepartmentRepository departmentRepository;
 
@@ -25,5 +21,9 @@ public class DepartmentService {
 		departmentRepository.saveAll(departmentList);
 	}
 
+
+	public void setDepartmentList(List<Department> departmentList) {
+		this.departmentList = departmentList;
+	}
 
 }

@@ -2,13 +2,17 @@ package de.infomotion.kw.demo.services;
 
 import de.infomotion.kw.demo.dto.CountryDto;
 import de.infomotion.kw.demo.dto.DepartmentDto;
+import de.infomotion.kw.demo.dto.OrderDto;
 import de.infomotion.kw.demo.model.summerwine.SummerwineCountry;
 import de.infomotion.kw.demo.model.summerwine.SummerwineDepartment;
+import de.infomotion.kw.demo.model.summerwine.SummerwineOrder;
 import de.infomotion.kw.demo.services.kwdb.CountryService;
 import de.infomotion.kw.demo.services.kwdb.CustomerService;
 import de.infomotion.kw.demo.services.kwdb.DepartmentService;
+import de.infomotion.kw.demo.services.kwdb.OrderService;
 import de.infomotion.kw.demo.services.summerwine.SummerWineCountryService;
 import de.infomotion.kw.demo.services.summerwine.SummerWineDepartmentService;
+import de.infomotion.kw.demo.services.summerwine.SummerWineOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -31,6 +35,10 @@ public class ServiceHandler {
 	@Autowired SummerWineDepartmentService summerWineDepartmentService;
 	@Autowired DepartmentService departmentService;
 
+	//Order
+	@Autowired SummerWineOrderService summerWineOrderService;
+	@Autowired OrderService orderService;
+
 	//Eventlistener
 	@Transactional
 	@EventListener(value = ApplicationReadyEvent.class)
@@ -38,11 +46,22 @@ public class ServiceHandler {
 
 		//copyCountries();
 		//copyCustomer();
-		copyDepartments();
+		//copyDepartments();
+		copyOrders();
+	}
+
+	private void copyOrders() {
+		List<SummerwineOrder> summerwineOrderList = summerWineOrderService.getSummerwineOrderList();
+
+		OrderDto orderDto = new OrderDto(summerwineOrderList);
+		orderDto.transferObject();
+
+		orderService.setOrderList(orderDto.getOrderList());
+		orderService.saveOrders();
 	}
 
 	//Methoden
-	private void copyDepartments() {
+	public void copyDepartments() {
 		List<SummerwineDepartment> summerwineDepartmentList = summerWineDepartmentService.getSummerwineDepartmentList();
 
 		DepartmentDto departmentDto = new DepartmentDto(summerwineDepartmentList);

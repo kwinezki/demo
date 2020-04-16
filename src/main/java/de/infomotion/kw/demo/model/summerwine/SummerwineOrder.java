@@ -3,6 +3,7 @@ package de.infomotion.kw.demo.model.summerwine;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -32,10 +33,10 @@ public class SummerwineOrder {
 	private BigInteger quantity;
 
 	@Column(name = "gesamtverkaufspreis", precision = 15, scale = 2, nullable = true)
-	private Double wholeSalePrice;
+	private BigDecimal wholeSalePrice;
 
 	@Column(name = "gesamteinkaufspreis", precision = 15, scale = 2, nullable = true)
-	private Double wholeBuyPrice;
+	private BigDecimal wholeBuyPrice;
 
 
 }
