@@ -1,4 +1,4 @@
-package de.infomotion.kw.demo.services;
+package de.infomotion.kw.demo.services.kwdb;
 
 import de.infomotion.kw.demo.model.kwdb.Customer;
 import de.infomotion.kw.demo.model.summerwine.SummerwineCustomer;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CustomerComponent {
+public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;

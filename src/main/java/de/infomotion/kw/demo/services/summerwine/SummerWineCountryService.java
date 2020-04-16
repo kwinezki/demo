@@ -1,4 +1,4 @@
-package de.infomotion.kw.demo.services;
+package de.infomotion.kw.demo.services.summerwine;
 
 import de.infomotion.kw.demo.model.summerwine.SummerwineCountry;
 import de.infomotion.kw.demo.repository.summerwine.SummerWineCountryRepository;

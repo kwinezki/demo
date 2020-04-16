@@ -1,48 +1,69 @@
 package de.infomotion.kw.demo.services;
 
-import de.infomotion.kw.demo.dto.SummerWineCountryDto;
+import de.infomotion.kw.demo.dto.CountryDto;
+import de.infomotion.kw.demo.dto.DepartmentDto;
 import de.infomotion.kw.demo.model.summerwine.SummerwineCountry;
+import de.infomotion.kw.demo.model.summerwine.SummerwineDepartment;
+import de.infomotion.kw.demo.services.kwdb.CountryService;
+import de.infomotion.kw.demo.services.kwdb.CustomerService;
+import de.infomotion.kw.demo.services.kwdb.DepartmentService;
+import de.infomotion.kw.demo.services.summerwine.SummerWineCountryService;
+import de.infomotion.kw.demo.services.summerwine.SummerWineDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Component
+@Service
 public class ServiceHandler {
 
-	@Autowired
-	SummerWineCountryService summerWineCountryService;
+	//Country
+	@Autowired SummerWineCountryService summerWineCountryService;
+	@Autowired CountryService countryService;
 
-	@Autowired
-	CustomerComponent customerComponent;
+	//Customer
+	@Autowired CustomerService customerService;
 
-	@Autowired
-	CountryComponent countryComponent;
+	//Department
+	@Autowired SummerWineDepartmentService summerWineDepartmentService;
+	@Autowired DepartmentService departmentService;
 
-
+	//Eventlistener
 	@Transactional
 	@EventListener(value = ApplicationReadyEvent.class)
 	public void onStartup() {
 
-		copyCountries();
-		copyCustomer();
+		//copyCountries();
+		//copyCustomer();
+		copyDepartments();
+	}
+
+	//Methoden
+	private void copyDepartments() {
+		List<SummerwineDepartment> summerwineDepartmentList = summerWineDepartmentService.getSummerwineDepartmentList();
+
+		DepartmentDto departmentDto = new DepartmentDto(summerwineDepartmentList);
+		departmentDto.transferObject();
+
+		departmentService.setDepartmentList(departmentDto.getDepartmentList());
+		departmentService.saveDepartments();
 	}
 
 	private void copyCustomer() {
-		customerComponent.copyCustomers();
+		customerService.copyCustomers();
 	}
 
 	private void copyCountries() {
 
 		List<SummerwineCountry> summerwineCountryList = summerWineCountryService.getSummerwineCountryList();
 
-		SummerWineCountryDto summerwineCountryDto = new SummerWineCountryDto(summerwineCountryList);
+		CountryDto summerwineCountryDto = new CountryDto(summerwineCountryList);
 		summerwineCountryDto.transferObject();
-		countryComponent.setCountryList(summerwineCountryDto.getCountryList());
-		countryComponent.saveCountries();
+		countryService.setCountryList(summerwineCountryDto.getCountryList());
+		countryService.saveCountries();
 
 		//@ToDo: Debuggen
 	}

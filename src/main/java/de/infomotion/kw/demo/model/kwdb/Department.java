@@ -21,5 +21,5 @@ public class Department {
 	private String departmentName;
 
 	@Column(name = "kostenstelle", precision = 38, nullable = true)
-	private Integer costCenter;
+	private BigInteger costCenter;
 }

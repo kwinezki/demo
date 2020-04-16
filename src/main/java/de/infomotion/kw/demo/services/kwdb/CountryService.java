@@ -1,4 +1,4 @@
-package de.infomotion.kw.demo.services;
+package de.infomotion.kw.demo.services.kwdb;
 
 import de.infomotion.kw.demo.model.kwdb.Country;
 import de.infomotion.kw.demo.repository.kwdb.CountryRepository;
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-public class CountryComponent {
+public class CountryService {
 
 	private List<Country> countryList;
 

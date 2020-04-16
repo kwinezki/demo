@@ -6,12 +6,12 @@ import de.infomotion.kw.demo.model.summerwine.SummerwineCountry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SummerWineCountryDto {
+public class CountryDto {
 
 	private List<SummerwineCountry> summerWineCountryList;
 	private List<Country> countryList = new ArrayList<>();
 
-	public SummerWineCountryDto(List<SummerwineCountry> summerWineCountryList) {
+	public CountryDto(List<SummerwineCountry> summerWineCountryList) {
 		this.summerWineCountryList = summerWineCountryList;
 	}
 
