@@ -1,18 +1,9 @@
 package de.infomotion.kw.demo.services;
 
-import de.infomotion.kw.demo.dto.CountryDto;
-import de.infomotion.kw.demo.dto.DepartmentDto;
-import de.infomotion.kw.demo.dto.OrderDto;
-import de.infomotion.kw.demo.model.summerwine.SummerwineCountry;
-import de.infomotion.kw.demo.model.summerwine.SummerwineDepartment;
-import de.infomotion.kw.demo.model.summerwine.SummerwineOrder;
-import de.infomotion.kw.demo.services.kwdb.CountryService;
-import de.infomotion.kw.demo.services.kwdb.CustomerService;
-import de.infomotion.kw.demo.services.kwdb.DepartmentService;
-import de.infomotion.kw.demo.services.kwdb.OrderService;
-import de.infomotion.kw.demo.services.summerwine.SummerWineCountryService;
-import de.infomotion.kw.demo.services.summerwine.SummerWineDepartmentService;
-import de.infomotion.kw.demo.services.summerwine.SummerWineOrderService;
+import de.infomotion.kw.demo.dto.*;
+import de.infomotion.kw.demo.model.summerwine.*;
+import de.infomotion.kw.demo.services.kwdb.*;
+import de.infomotion.kw.demo.services.summerwine.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -39,15 +30,78 @@ public class ServiceHandler {
 	@Autowired SummerWineOrderService summerWineOrderService;
 	@Autowired OrderService orderService;
 
+	//Product
+	@Autowired SummerWineProductService summerWineProductService;
+	@Autowired ProductService productService;
+
+	//State
+	@Autowired SummerWineStateService summerWineStateService;
+	@Autowired StateService stateService;
+
+	//Variety
+	@Autowired SummerWineVarietyService summerWineVarietyService;
+	@Autowired VarietyService varietyService;
+
+	//Vendor
+	@Autowired SummerWineVendorService summerWineVendorService;
+	@Autowired VendorService vendorService;
+
 	//Eventlistener
 	@Transactional
 	@EventListener(value = ApplicationReadyEvent.class)
 	public void onStartup() {
 
-		//copyCountries();
-		//copyCustomer();
-		//copyDepartments();
+		copyCountries();
+		copyCustomer();
+		copyDepartments();
 		copyOrders();
+		copyProducts();
+		copyStates();
+		copyVarieties();
+		copyVendors();
+	}
+
+	private void copyVendors() {
+		List<SummerwineVendor> summerwineVendorList = summerWineVendorService.getSummerWineVendorList();
+
+		VendorDto vendorDto = new VendorDto(summerwineVendorList);
+		vendorDto.transferObject();
+
+		vendorService.setVendorList(vendorDto.getVendorList());
+		vendorService.saveVendor();
+	}
+
+	private void copyVarieties() {
+		List<SummerwineVariety> summerwineVarietyList = summerWineVarietyService.getSummerWineVarietList();
+
+		VarietyDto varietyDto = new VarietyDto(summerwineVarietyList);
+		varietyDto.transferObject();
+
+		varietyService.setVarietyList(varietyDto.getVarietyList());
+		varietyService.saveVarieties();
+	}
+
+	private void copyStates() {
+		List<SummerwineState> summerwineStateList = summerWineStateService.getSummerWineStateList();
+
+		StateDto stateDto = new StateDto(summerwineStateList);
+		stateDto.transferObject();
+
+		stateService.setStateList(stateDto.getStateList());
+		stateService.saveStates();
+	}
+
+	//Methoden
+
+
+	private void copyProducts() {
+		List<SummerwineProduct> summerwineProductList = summerWineProductService.getSummerWineProductList();
+
+		ProductDto productDto = new ProductDto(summerwineProductList);
+		productDto.transferObject();
+
+		productService.setProductList(productDto.getProductList());
+		productService.saveProducts();
 	}
 
 	private void copyOrders() {
@@ -60,7 +114,7 @@ public class ServiceHandler {
 		orderService.saveOrders();
 	}
 
-	//Methoden
+
 	public void copyDepartments() {
 		List<SummerwineDepartment> summerwineDepartmentList = summerWineDepartmentService.getSummerwineDepartmentList();
 

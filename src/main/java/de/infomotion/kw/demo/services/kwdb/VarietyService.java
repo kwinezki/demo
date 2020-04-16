@@ -15,7 +15,7 @@ public class VarietyService {
 	@Autowired
 	VarietyRepository varietyRepository;
 
-	public void saveVarietys() {
+	public void saveVarieties() {
 		varietyRepository.saveAll(varietyList);
 	}
 
